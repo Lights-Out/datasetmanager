@@ -11,4 +11,11 @@
 
     <artifactId>table-updater</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>task.bigquery</groupId>
+            <artifactId>client</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>
