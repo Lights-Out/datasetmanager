@@ -9,7 +9,7 @@ import java.util.Set;
 class Worker {
     private final BigQuery bigquery;
 
-    Worker(BigQuery bigquery) {
+    Worker(@NonNull BigQuery bigquery) {
         this.bigquery = bigquery;
     }
 
@@ -22,7 +22,7 @@ class Worker {
     }
 
     private void createTable(String datasetId, String tableName) {
-        log.info("Start creating table `" + tableName + "`");
+        log.info("Start creating table `{}`", tableName);
         TableId tableId = TableId.of(datasetId, tableName);
         Field hitId = Field.newBuilder("hitId", LegacySQLTypeName.STRING)
                 .setMode(Field.Mode.NULLABLE).build();
@@ -32,6 +32,6 @@ class Worker {
         TableDefinition tableDefinition = StandardTableDefinition.of(schema);
         TableInfo tableInfo = TableInfo.newBuilder(tableId, tableDefinition).build();
         Table table = bigquery.create(tableInfo);
-        log.info("table `" + tableName + "` has been successfully created, link: " + table.getSelfLink());
+        log.info("table `{}` has been successfully created, link: {}", tableName, table.getSelfLink());
     }
 }
