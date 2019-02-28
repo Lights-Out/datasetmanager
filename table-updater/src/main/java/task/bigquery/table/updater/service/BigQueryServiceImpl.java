@@ -3,18 +3,16 @@ package task.bigquery.table.updater.service;
 import com.google.cloud.bigquery.BigQuery;
 import com.google.cloud.bigquery.Table;
 import com.google.cloud.bigquery.TableInfo;
+import lombok.AllArgsConstructor;
 import lombok.NonNull;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 
+@AllArgsConstructor
 public class BigQueryServiceImpl implements BigQueryService {
 
     private final BigQuery bigquery;
-
-    public BigQueryServiceImpl(@NonNull BigQuery bigquery) {
-        this.bigquery = bigquery;
-    }
 
     @Override
     public Iterable<Table> findTablesByDataset(@NonNull String datasetId) {

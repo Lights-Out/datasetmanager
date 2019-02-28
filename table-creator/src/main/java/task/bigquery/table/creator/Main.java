@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import task.bigquery.client.BigQueryClient;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
 
 @Slf4j
 public class Main {
@@ -18,9 +18,8 @@ public class Main {
         String prefix = args[2];
         int count = Integer.parseInt(args[3]);
 
-        Set<String> tableNames = Stream.iterate(1, (i) -> i + 1)
-                .limit(count)
-                .map(number -> prefix + String.valueOf(number))
+        Set<String> tableNames = IntStream.range(1, count + 1)
+                .mapToObj(number -> prefix + String.valueOf(number))
                 .collect(Collectors.toSet());
 
         try {

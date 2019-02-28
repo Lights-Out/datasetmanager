@@ -1,6 +1,8 @@
 package task.bigquery.table.updater;
 
 import com.google.cloud.bigquery.Table;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import task.bigquery.table.updater.service.BigQueryService;
@@ -11,15 +13,11 @@ import java.util.Spliterators;
 import java.util.stream.StreamSupport;
 
 @Slf4j
+@AllArgsConstructor(access = AccessLevel.PACKAGE)
 class Worker {
     private static final String TABLE_PATTERN = "tmp.+";
     private final BigQueryService bigquery;
     private final DateTimeService dateTimeService;
-
-    Worker(@NonNull BigQueryService bigquery, @NonNull DateTimeService dateTimeService) {
-        this.bigquery = bigquery;
-        this.dateTimeService = dateTimeService;
-    }
 
     void updateTablesExpirationDate(@NonNull String datasetId) {
 
